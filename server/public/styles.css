@@ -1,0 +1,26 @@
+header {
+  height: 40px;
+}
+
+header > div,
+header img {
+  height: 100%;
+}
+
+header span {
+  font-size: 30px;
+}
+
+.list-item {
+  height: 40vh;
+}
+
+.list-item .img-container {
+  height: 60%;
+}
+
+.list-item img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
