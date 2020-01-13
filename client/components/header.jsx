@@ -2,14 +2,16 @@ import React from 'react';
 
 const Header = () => {
   return (
-    <>
-      <div className="img-container">
-        <img src="/images/favicon.png" alt="store icon"/>
+    <header className='container-fluid'>
+      <div className="row">
+        <div className="col-3">
+          <img src="/images/favicon.png" alt="store icon" />
+        </div>
+        <div className='col-9'>
+          <span>Wicked Sales</span>
+        </div>
       </div>
-      <div className='logo-container'>
-        <span>Wicked Sales</span>
-      </div>
-    </>
+    </header>
   );
 };
 

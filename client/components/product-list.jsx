@@ -1,5 +1,5 @@
 import React from 'react';
-// import ProductListItem from './product-list-item';
+import ProductListItem from './product-list-item';
 
 const ProductList = () => {
   const [products, setProducts] = React.useState([]);
@@ -14,9 +14,17 @@ const ProductList = () => {
     getProducts();
   }, []);
 
+  const createProductList = () => {
+    return (
+      products.map(item => <ProductListItem key={item.productId} product={item} />)
+    );
+  };
+
   return (
-    <div className="product-list-container">
-      {products}
+    <div className="container overflow-hidden">
+      <div className="row">
+        {createProductList()}
+      </div>
     </div>
   );
 };

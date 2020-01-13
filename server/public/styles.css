@@ -1,0 +1,17 @@
+header {
+  height: 100px;
+}
+
+.list-item {
+  height: 40vh;
+}
+
+.list-item .img-container {
+  height: 60%;
+}
+
+.list-item img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}

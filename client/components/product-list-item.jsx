@@ -1,13 +1,21 @@
 import React from 'react';
 
-const ProductListItem = () => {
+const ProductListItem = props => {
   return (
-    <div className="list-item">
-      <div className="product-image-container"></div>
+    <div className="list-item col-6 col-sm-4">
+      <div className="img-container">
+        <img src={props.product.image} alt="" />
+      </div>
       <div className="product-desc-container">
-        <div className="product-name-container"></div>
-        <div className="product-price-container"></div>
-        <div className="product-detail-container"></div>
+        <div className="product-name-container">
+          <span>{props.product.name}</span>
+        </div>
+        <div className="product-price-container">
+          <span>{props.product.price}</span>
+        </div>
+        <div className="product-detail-container">
+          <span>{props.product.shortDescription}</span>
+        </div>
       </div>
     </div>
   );
