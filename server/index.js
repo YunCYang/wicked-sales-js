@@ -41,7 +41,7 @@ app.get('/api/products/:productId', (req, res, next) => {
       if (result.rows[0]) {
         res.json(result.rows[0]);
       } else {
-        next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
+        next(new ClientError(`Requested product (id: ${req.params.productId}) does not exist in the database.`, 404));
       }
     })
     .catch(err => next(err));
