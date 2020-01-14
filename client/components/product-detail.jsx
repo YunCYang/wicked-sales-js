@@ -8,7 +8,7 @@ const ProductDetails = props => {
       fetch(`/api/products/${props.id}`)
         .then(res => res.json())
         .then(res => setProduct(res));
-    }, [product]
+    }, []
   );
 
   if (product) {
@@ -27,7 +27,7 @@ const ProductDetails = props => {
             <span>{product.name}</span>
           </div>
           <div className="product-price-container">
-            <span> $ {product.price}</span>
+            <span> $ {(product.price / 100).toFixed(2)}</span>
           </div>
           <div className="product-detail-container">
             <span>{product.longDescription}</span>

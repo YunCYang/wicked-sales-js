@@ -7,8 +7,6 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      message: null,
-      isLoading: true,
       view: {
         name: 'catalog',
         params: {}
@@ -17,18 +15,8 @@ export default class App extends React.Component {
     this.setView = this.setView.bind(this);
   }
 
-  componentDidMount() {
-    fetch('/api/health-check')
-      .then(res => res.json())
-      .then(data => this.setState({ message: data.message || data.error }))
-      .catch(err => this.setState({ message: err.message }))
-      .finally(() => this.setState({ isLoading: false }));
-  }
-
   setView(name, params) {
     this.setState({
-      message: this.state.message,
-      isLoading: this.state.isLoading,
       view: {
         name: name,
         params: params
@@ -45,13 +33,11 @@ export default class App extends React.Component {
   }
 
   render() {
-    return this.state.isLoading
-      ? <h1>Testing connections...</h1>
-      : (
-        <>
-          <Header />
-          {this.renderListOrDetail()}
-        </>
-      );
+    return (
+      <>
+        <Header />
+        {this.renderListOrDetail()}
+      </>
+    );
   }
 }

@@ -13,7 +13,7 @@ const ProductListItem = props => {
           <span>{props.product.name}</span>
         </div>
         <div className="product-price-container">
-          <span>$ {props.product.price}</span>
+          <span>$ {(props.product.price / 100).toFixed(2)}</span>
         </div>
         <div className="product-detail-container">
           <span>{props.product.shortDescription}</span>
