@@ -48,7 +48,7 @@ app.get('/api/products/:productId', (req, res, next) => {
 });
 
 app.get('/api/cart', (req, res, next) => {
-  if (!req.session.cartId) return [];
+  if (!req.session.cartId) res.json([]);
   const sql = `
     select "c"."cartItemId",
        "c"."price",
@@ -80,7 +80,7 @@ app.post('/api/cart', (req, res, next) => {
   db.query(getPriceSql, getPriceValue)
     .then(result => {
       if (!result.rows[0]) {
-        next(new ClientError(`Requested product (id: ${req.body.productId}) does not exist in the database.`, 404));
+        throw (new ClientError(`Requested product (id: ${req.body.productId}) does not exist in the database.`, 404));
       }
       if (req.session.cartId) {
         return { cartId: req.session.cartId, price: result.rows[0].price };
