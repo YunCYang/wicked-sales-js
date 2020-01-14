@@ -2,7 +2,9 @@ import React from 'react';
 
 const ProductListItem = props => {
   return (
-    <div className="list-item col-6 col-sm-4">
+    <div className="list-item col-6 col-sm-4" onClick={() => {
+      props.setView('detail', props.product.productId);
+    }}>
       <div className="img-container">
         <img src={props.product.image} alt="" />
       </div>
@@ -11,7 +13,7 @@ const ProductListItem = props => {
           <span>{props.product.name}</span>
         </div>
         <div className="product-price-container">
-          <span>{props.product.price}</span>
+          <span>$ {props.product.price}</span>
         </div>
         <div className="product-detail-container">
           <span>{props.product.shortDescription}</span>
