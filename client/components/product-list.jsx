@@ -1,7 +1,7 @@
 import React from 'react';
 import ProductListItem from './product-list-item';
 
-const ProductList = () => {
+const ProductList = props => {
   const [products, setProducts] = React.useState([]);
 
   const getProducts = () => {
@@ -16,7 +16,7 @@ const ProductList = () => {
 
   const createProductList = () => {
     return (
-      products.map(item => <ProductListItem key={item.productId} product={item} />)
+      products.map(item => <ProductListItem key={item.productId} product={item} setView={props.setView} />)
     );
   };
 
