@@ -34,6 +34,11 @@ const ProductDetails = props => {
               <div className="product-detail-container container">
                 <span>{product.shortDescription}</span>
               </div>
+              <div className="add-cart-button-container container mt-4">
+                <button className="btn btn-primary" onClick={() => {
+                  props.addToCart(product);
+                }}>Add to Cart</button>
+              </div>
             </div>
           </div>
         </div>
