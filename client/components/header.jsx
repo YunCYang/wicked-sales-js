@@ -10,7 +10,9 @@ const Header = props => {
         <div className='title-container col-7'>
           <span>Wicked Sales</span>
         </div>
-        <div className="cart-container col-3 mt-3">
+        <div className="cart-container col-3 mt-3" onClick={
+          () => props.setView('cart', {})
+        }>
           <span className="button">{props.cartItemCount} items  </span>
           <i className="fas fa-shopping-cart button"></i>
         </div>
