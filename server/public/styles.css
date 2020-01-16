@@ -1,6 +1,6 @@
 header {
   height: 60px;
-  background-color: black;
+  background-color: gray;
 }
 
 header > div {
@@ -37,18 +37,28 @@ header img {
   height: 60%;
 }
 
-.list-item img {
+.cart-item-container .img-container,
+.cart-item-container > div {
+  height: 90%;
+}
+
+.list-item img,
+.cart-item-container img {
   height: 100%;
   width: 100%;
   object-fit: contain;
 }
 
-.product_name {
+.product-name {
   font-size: 20px;
 }
 
-.product_price {
+.product-price {
   color: gray;
+}
+
+.cart-item-container {
+  height: 25vh;
 }
 
 .button {
