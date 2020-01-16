@@ -20,8 +20,15 @@ const CartSummary = props => {
         <span>My Cart</span>
       </div>
       {cartItemList}
-      <div className="cart-price-container container">
-        <span>Item Total $ {(priceTotal / 100).toFixed(2)}</span>
+      <div className="row">
+        <div className="cart-price-container container col-10">
+          <span>Item Total $ {(priceTotal / 100).toFixed(2)}</span>
+        </div>
+        <div className="col-2">
+          <button className="btn btn-primary" onClick={
+            () => props.setView('checkout', {})
+          }>Checkout</button>
+        </div>
       </div>
     </div>
   );
