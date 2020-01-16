@@ -127,6 +127,42 @@ app.post('/api/cart', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.post('/api/orders', (req, res, next) => {
+  if (!req.session.cartId) {
+    next(new ClientError('The cart does not exist', 400));
+  }
+  if (!req.body.name || !req.body.creditCard || !req.body.shippingAddress) {
+    next(new ClientError('The ordering detail is not complete', 400));
+  }
+  const creditCardCheck = cardNumber => {
+    if (isNaN(parseInt(cardNumber)) || cardNumber.toString() < 16) return false;
+    const cardArray = cardNumber.split('');
+    const checkDigit = cardArray.pop();
+    cardArray.reverse();
+    for (let i = 0; i < cardArray.length; i++) {
+      if (i % 2 === 0) cardArray[i] *= 2;
+      if (cardArray[i] > 9) cardArray[i] -= 9;
+    }
+    if ((cardArray.reduce((sum, acc) => parseInt(sum) + parseInt(acc)) + parseInt(checkDigit)) % 10 === 0) return true;
+    return false;
+  };
+  if (!creditCardCheck(req.body.creditCard)) {
+    next(new ClientError('The credit card number is invalid', 400));
+  }
+  const sql = `
+    insert into "orders" ("cartId", "name", "creditCard", "shippingAddress")
+    values ($1, $2, $3, $4)
+    returning *;
+  `;
+  const value = [req.session.cartId, req.body.name, req.body.creditCard, req.body.shippingAddress];
+  db.query(sql, value)
+    .then(result => {
+      delete req.session.cartId;
+      res.status(201).json(result.rows[0]);
+    })
+    .catch(err => next(err));
+});
+
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
 });
